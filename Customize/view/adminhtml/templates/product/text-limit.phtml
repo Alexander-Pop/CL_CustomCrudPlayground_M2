@@ -1,0 +1,218 @@
+<style type="text/css">
+    .textTable {
+        display: block;
+        border-top: 1px solid #e3e3e3;
+        width: 75%;
+        margin-top: 20px;
+        padding-left: 5%; 
+    }
+
+    .textTable tr th{
+        text-align: left;
+        min-width: 250px;
+    }
+
+    .TextTableHeading > td > h4{
+        text-align: left;
+        padding-left: 25%;
+        padding-top: 10%;
+        margin-bottom: 2px;
+    }
+
+    .textTable tbody tr td input, .textTable tbody tr td button {
+        margin-top: 2%;
+    }
+
+    button.deleteTextBox {
+        margin-left: 5px;
+    }
+
+</style>
+<?php
+$partArr = $block->getProductTextLimitData();
+?>
+<input name="form_key" type="hidden" value="<?php /* @escapeNotVerified */ echo $block->getFormKey(); ?>" />
+<form method="post" action="" id="custom_text_limit_form" data-mage-init='{"form": {}, "validation": {}}' autocomplete="off">
+    <div class="entry-edit" id="custom_text_limit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend">Text Limit</h4>
+        </div>
+        <div class="fieldset fieldset-wide inside" id="group_fields4">
+            <?php if (sizeof($partArr) == 0) { ?>
+                <table class="textTable" width="100%" id="table_0" style="border: none !important">
+                    <thead>
+                        <tr>
+                            <th>
+                                Views
+                                <input type="text" data-form-part="product_form" name="customize_product[text_limit][0][views]" id="text_limit0" class="admin__control-text" value="" data-validate="{required:true}">
+                            </th> 
+                            <th>
+                                <button id="text_limit_0" type="button" class="addViews">
+                                    <span>Add More Views</span>
+                                </button>
+                            </th>
+                            <th>
+                                <button id="text_limit_0" type="button" class="addBoxName" style="float:left">
+                                    <span>Add More Box Name</span>
+                                </button>
+                            </th>
+                        </tr> 
+                    </thead>
+                    <tbody id="table_body" class="tableBody">
+                        <tr class="TextTableHeading" id="sizeR001">
+
+                            <td><h4>Name</h4></td>
+                            <td><h4>Length</h4></td>
+                            <td><h4>Min Length</h4></td>
+                        </tr>
+
+                        <tr class="sizeHead" id="sizeR0">
+
+                            <td>
+                                <input type="checkbox" data-form-part="product_form" name="customize_product[text_limit][0][data][0][optional]" id="limitTitleField0_0"  class="" value="">
+                                <input type="text" data-form-part="product_form" name="customize_product[text_limit][0][data][0][length_title]" id="limitTitleField0_0"  class="admin__control-text textCenter" data-validate="{required:true}">
+                            </td>
+                            <td>
+                                <input type="text" data-form-part="product_form" name="customize_product[text_limit][0][data][0][length]" id="limitField0_0" class="admin__control-text textCenter" data-validate="{required:true}">
+                            </td>
+                            <td>
+                                <input type="text" data-form-part="product_form" name="customize_product[text_limit][0][data][0][mlength]" id="limitField0_0" class="admin__control-text textCenter" data-validate="{required:true}">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <?php
+            } else {
+                $k = 0;
+                foreach ($partArr as $key => $value) {
+                    // echo 'value <pre>'.print_r($value); die;
+                    if ($k == 0) {
+                        $partDelete = '';
+                        $addMorePart = '<button id="text_limit_0" type="button" class="addViews"><span>Add More Views</span></button>';
+                    } else {
+                        $partDelete = '<button style="cursor:pointer" type="button" class="deleteView" title="Delete"><span>Delete View</span></button>';
+                        $addMorePart = '';
+                    }
+                    ?>
+                    <table class="textTable" width="100%" id="table_<?php echo $k; ?>" style="display:block;<?php echo ($k > 0) ? "padding-top: 25px" : "border: none"; ?>">
+                        <thead>
+                            <tr>
+                                <th>Views
+                                    <input type="text" data-form-part="product_form" name="customize_product[text_limit][<?= $k ?>][views]" value="<?php echo $key; ?>" id="text_limit<?php echo $k; ?>" class="admin__control-text" data-validate="{required:true}">
+                                </th>
+                                <th>
+                                    <button id="text_limit_<?php echo $k; ?>" type="button" class="addBoxName" ><span>Add More Box Name</span></button>
+                                </th>
+                                <th><?php echo $addMorePart . $partDelete; ?></th>
+                            </tr> 
+                        </thead>
+
+                        <tbody id="table_body" class="tableBody">
+                            <tr class="TextTableHeading" id="sizeR<?php echo $k; ?>">
+
+                                <td><h4>Name</h4></td>
+                                <td><h4>Max Length</h4></td>
+                                <td><h4>Min Length</h4></td>
+                            </tr>
+
+                            <?php
+                            $count = count($value);
+                            for ($i = 0; $i < $count; $i++) {
+                                if ($i == "0") {
+                                    ?>
+                                    <tr class="sizeHead" id="sizeR<?php echo $k; ?>">  
+
+                                        <td>
+                                            <input type="checkbox" data-form-part="product_form"  value="<?php echo ($value[$i]['optional'] != '') ? $value[$i]['optional'] : ''; ?>" name="customize_product[text_limit][<?= $k ?>][data][<?= $i ?>][optional]" id="limitTitleField<?php echo $k; ?>_<?php echo $i; ?>" <?php echo ($value[$i]['optional'] == 1) ? "checked='checked'" : ''; ?>>
+                                            <input type="text" data-form-part="product_form"  value="<?php echo ($value[$i]['length_title'] != '') ? $value[$i]['length_title'] : ''; ?>" name="customize_product[text_limit][<?= $k ?>][data][<?= $i ?>][length_title]" id="limitTitleField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text teST2" data-validate="{required:true}">
+                                        </td>
+
+                                        <td>
+                                            <input type="text" data-form-part="product_form"  value="<?php echo $value[$i]['length']; ?>" name="customize_product[text_limit][<?= $k ?>][data][<?= $i ?>][length]" id="limitField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text" data-validate="{required:true}">
+                                        </td>
+
+                                        <td>
+                                            <input type="text" data-form-part="product_form"  value="<?php echo $value[$i]['mlength']; ?>" name="customize_product[text_limit][<?= $k ?>][data][<?= $i ?>][mlength]" id="limitField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text" data-validate="{required:true}">
+                                        </td>
+
+
+                                    </tr>
+                                <?php } else { ?>                                        
+                                    <tr class="sizeHead" id="sizeR<?php echo $k; ?>">
+
+                                        <td>
+                                            <input type="checkbox" data-form-part="product_form" value="<?php echo $value[$i]['optional']; ?>" name="customize_product[text_limit][<?= $k ?>][data][<?= $i ?>][optional]" id="limitField<?php echo $k; ?>_<?php echo $i; ?>" <?php echo ($value[$i]['optional'] == 1) ? "checked='checked'" : ''; ?>>
+                                            <input type="text"  data-form-part="product_form" value="<?php echo $value[$i]['length_title']; ?>" name="customize_product[text_limit][<?= $k ?>][data][<?= $i ?>][length_title]" id="limitTitleField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text" data-validate="{required:true}">
+                                        </td>
+                                        <td>
+                                            <input type="text" data-form-part="product_form" value="<?php echo $value[$i]['length']; ?>" name="customize_product[text_limit][<?= $k ?>][data][<?= $i ?>][length]" id="limitField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text" data-validate="{required:true}">
+                                        </td>
+                                        <td>
+                                            <input type="text" data-form-part="product_form" value="<?php echo $value[$i]['mlength']; ?>" name="customize_product[text_limit][<?= $k ?>][data][<?= $i ?>][mlength]" id="limitField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text" data-validate="{required:true}">
+                                        </td>
+                                        <td>
+                                            <input type="hidden" id="deleteTextField<?php echo $k; ?>_<?php echo $i; ?>">
+                                            <button type="button" data-form-part="product_form" title="Delete" class="deleteTextBox"><span>Delete</span></button>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            }
+
+                            $k++;
+                            ?>
+                        </tbody>
+                    </table> 
+                    <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+</form>
+<script>
+
+    require([
+        'jquery',
+        'mage/adminhtml/form',
+        'customJs'
+    ], function ($) {
+        'use strict';
+
+        var dataTable = $('#custom_text_limit_form');
+        dataTable.mage('validation', {});
+
+        jQuery('.addViews').on('click', function () {
+            var colorPartHolder = jQuery("#custom_text_limit .inside");
+
+            var nextTableId = parseInt(jQuery("#custom_text_limit .inside table:last").attr("id").split("_")[1]) + 1;
+
+            var table = "";
+            table = '<table class="textTable" width ="100%" id ="table_' + nextTableId + '" style="display:block;padding-top:20px;"><thead><tr><th>Views<input type="text" data-form-part="product_form" name="customize_product[text_limit][' + nextTableId + '][views]" id="text_limit' + nextTableId + '" class="admin__control-text" data-validate="{required:true}"></th><th style="text-align:center;"><button id="text_limit_part_' + nextTableId + '" type="button" class="addBoxName"><span>Add More Box Name</span></button></th><th><button style="cursor:pointer;" title="Delete" type="button" class="deleteView">Delete View</button></th></tr></thead><tbody id="table_body' + nextTableId + '"><tr class="TextTableHeading" id="sizeR0_' + nextTableId + '"><td><h4>Name</h4></td><td><h4>Length</h4></td></tr><tr class="sizeHead" id="sizeR0"><td><input type="text" data-form-part="product_form" name="customize_product[text_limit][' + nextTableId + '][data][0][length_title]" id="limitTitleField' + nextTableId + '" class="admin__control-text" data-validate="{required:true}"></td><td><input type="text" data-form-part="product_form" name="customize_product[text_limit][' + nextTableId + '][data][0][length]" id="limitField' + nextTableId + '_1" class="admin__control-text" data-validate="{required:true}"></td></tr></tbody></table>';
+
+            jQuery(colorPartHolder).append(table);
+        });
+
+        jQuery.noConflict();
+
+
+        jQuery('body').on('click', '.addBoxName', function () {
+            var nextColId = parseInt(jQuery(this).parent().parent().parent().parent().find("tbody tr:last td:last input").attr("id").split("_")[1]) + 1;
+            console.log("nextColId = " + nextColId)
+            var nextTableId = parseInt(jQuery(this).parent().parent().parent().parent().attr("id").split("_")[1]);
+            var tableColor = '<tr><td><input type="checkbox" data-form-part="product_form" name="customize_product[text_limit][' + nextTableId + '][data][' + nextColId + '][optional]" id="limitTitleField' + nextTableId + '_' + nextColId + '"  class=""><input type="text" data-form-part="product_form" name="customize_product[text_limit][' + nextTableId + '][data][' + nextColId + '][length_title]" style="margin-left: 3px;" id="limitTitleField' + nextTableId + '_' + nextColId + '" class="admin__control-text" data-validate="{required:true}"></td><td><input type="text" data-form-part="product_form" name="customize_product[text_limit][' + nextTableId + '][data][' + nextColId + '][length]" id="limitField' + nextTableId + '_' + nextColId + '" class="admin__control-text" data-validate="{required:true}"></td><td><input type="text" data-form-part="product_form" name="customize_product[text_limit][' + nextTableId + '][data][' + nextColId + '][mlength]" id="limitField' + nextTableId + '_' + nextColId + '" class="admin__control-text" data-validate="{required:true}"></td><td><input type="hidden" id="deleteTextField' + nextTableId + '_' + nextColId + '"><button type="button" title="Delete" class="deleteTextBox"><span>Delete</span></button></td></tr>';
+
+            jQuery(this).parent().parent().parent().parent().find("tbody").append(tableColor);
+        });
+
+        jQuery('body').on('click', '.deleteTextBox', function () {
+            jQuery(this).parent().parent().remove();
+        });
+
+        jQuery('body').on('click', '.deleteView', function () {
+            jQuery(this).parent().parent().parent().parent().remove();
+        })
+
+
+    });
+</script>

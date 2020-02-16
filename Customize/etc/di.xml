@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Catalog\Ui\DataProvider\Product\Form\ProductDataProvider">
+        <plugin name="productDatProviderPlugin" type="Codelegacy\Customize\Plugin\ProductDataProvider" />
+    </type>
+
+    <virtualType name="customImageUploader" type="Codelegacy\Customize\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">catalog/tmp/custom_product</argument>
+            <argument name="basePath" xsi:type="string">catalog/custom_product</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="svg" xsi:type="string">svg</item>
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Codelegacy\Customize\Controller\Adminhtml\Customproduct\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">customImageUploader</argument>
+        </arguments>
+    </type>
+
+</config>

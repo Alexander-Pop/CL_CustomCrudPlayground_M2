@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Alex.
+* Glory to Ukraine! Glory to the heros!
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <!--
+  @updated _menu.less for submenus.
+  app/design/adminhtml/Magento/backend/Magento_Backend/web/css/source/module/_menu.less
+    -->
+  <menu>
+      <add id="Codelegacy_Design::Fit" title="Shoes Data" module="Codelegacy_Design" sortOrder="20" resource="Codelegacy_Design::Fit"/>
+      <add id="Codelegacy_Design::clips"  title="Cliparts" module="Codelegacy_Design" sortOrder="20" parent="Codelegacy_Design::Fit" resource="Codelegacy_Design::clips"/>
+      <add id="Codelegacy_Design::cliparts"  title="Manage cliparts" module="Codelegacy_Design" sortOrder="20" action="codelegacy_design/index/index" parent="Codelegacy_Design::clips" resource="Codelegacy_Design::cliparts"/>
+   </menu>
+
+</config>

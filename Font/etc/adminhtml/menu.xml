@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Alex.
+* Glory to Ukraine! Glory to the heros!
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+      <!-- <add id="Codelegacy_Font::Fit" title="Shoes Data" module="Codelegacy_Font" sortOrder="20" resource="Codelegacy_Font::Fit"/> -->
+      <add id="Codelegacy_Font::font"  title="Fonts" module="Codelegacy_Font" sortOrder="20" parent="Codelegacy_Design::Fit" resource="Codelegacy_Font::font"/>
+      <add id="Codelegacy_Font::fonts"  title="Manage fonts" module="Codelegacy_Font" sortOrder="20" action="codelegacy_font/index/index" parent="Codelegacy_Font::font" resource="Codelegacy_Font::fonts"/>
+   </menu>
+
+</config>

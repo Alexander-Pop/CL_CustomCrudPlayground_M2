@@ -1,0 +1,71 @@
+{
+    "product_custom_colors": {
+        "column": {
+            "color_id": true,
+            "part_id": true,
+            "part_name": true,
+            "color_title": true,
+            "color_code": true,
+            "price": true,
+            "product_id": true,
+            "active": true,
+            "color": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PRD_CUSTOM_COLORS_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "product_custom_length": {
+        "column": {
+            "len_id": true,
+            "part_id": true,
+            "part_name": true,
+            "len_title": true,
+            "llength": true,
+            "mlength": true,
+            "optional": true,
+            "product_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PRD_CUSTOM_LENGTH_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "product_custom_views": {
+        "column": {
+            "view_id": true,
+            "is_customize": true,
+            "view_image_1": true,
+            "view_image_2": true,
+            "view_image_3": true,
+            "view_image_4": true,
+            "view_thumb_image_1": true,
+            "view_thumb_image_2": true,
+            "view_thumb_image_3": true,
+            "view_thumb_image_4": true,
+            "product_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PRODUCT_CUSTOM_VIEWS_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "product_custom_otherinfo": {
+        "column": {
+            "otherinfo_id": true,
+            "font": true,
+            "font_size": true,
+            "clipcat": true,
+            "bclipcat": true,
+            "sizecat": true,
+            "swatch_status": true,
+            "product_id": true,
+            "stylenumber": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PRD_CUSTOM_OTHERINFO_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    }
+}

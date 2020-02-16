@@ -1,0 +1,10 @@
+<!--@subject {{trans "Canvas Shoe Order"}}  @-->
+
+{{template config_path="design/email/header_template"}}
+
+<!-- <p class="greeting">{{trans "dear %name," name=$data.name}}</p> -->
+<p>{{trans "dear   %email" email=$data.email}}</p>
+<p>{{trans "your order ID : %email" email=$data.order_id}}</p>
+<p>{{trans "Product: %productName" productName=$data.productName}}</p>
+<p>{{trans "Thank you for placing order."}}</p>
+{{template config_path="design/email/footer_template"}}

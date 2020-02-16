@@ -1,0 +1,92 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    
+    <table name="product_custom_colors">
+        <column xsi:type="int" name="color_id" unsigned="true" identity="true" nullable="false" comment="Color id"/>
+        <column xsi:type="varchar" name="part_id" nullable="false" length="255" comment="part id"/>
+        <column xsi:type="varchar" name="part_name" nullable="false" length="255" comment="Part name"/>
+        <column xsi:type="varchar" name="color_title" nullable="false" length="255" comment="Color title"/>
+        <column xsi:type="varchar" name="color_code" nullable="false" length="255" comment="Color code"/>
+        <column xsi:type="varchar" name="color" nullable="false" length="255" comment="Color"/>
+        <column xsi:type="int" name="price" unsigned="true" nullable="false" comment="Price"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Product ID"/>
+        <column xsi:type="int" name="active" unsigned="true" nullable="false" comment="Active status"/>
+        
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="color_id"/>
+        </constraint>
+        
+        <constraint xsi:type="foreign" referenceId="PRO_CUST_COLOR"
+                    table="product_custom_colors" column="product_id" referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+    
+    <table name="product_custom_length">
+        <column xsi:type="int" name="len_id" unsigned="true" identity="true" nullable="false" comment="len id"/>
+        <column xsi:type="varchar" name="part_id" nullable="true" length="255" comment="part id"/>
+        <column xsi:type="varchar" name="part_name" nullable="false" length="255" comment="Part name"/>
+        <column xsi:type="varchar" name="len_title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="int" name="llength" unsigned="true" nullable="false" comment="Llength"/>
+        <column xsi:type="int" name="mlength" unsigned="true" nullable="true" comment="Mlength"/>
+        <column xsi:type="int" name="optional" unsigned="true" nullable="true" comment="Optional status"/>
+
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Product ID"/>
+        
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="len_id"/>
+        </constraint>
+        
+        <constraint xsi:type="foreign" referenceId="PRO_CUST_LEN"
+                    table="product_custom_length" column="product_id" referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+    
+    <table name="product_custom_views">
+        <column xsi:type="int" name="view_id" unsigned="true" identity="true" nullable="false" comment="View id"/>
+        <column xsi:type="int" name="is_customize" unsigned="true" nullable="true" comment="Customize status"/>
+        <column xsi:type="varchar" name="view_image_1" nullable="false" length="255" comment="Front"/>
+        <column xsi:type="varchar" name="view_image_2" nullable="true" length="255" comment="Left"/>
+        <column xsi:type="varchar" name="view_image_3" nullable="true" length="255" comment="Back"/>
+        <column xsi:type="varchar" name="view_image_4" nullable="true" length="255" comment="Right"/>
+        <column xsi:type="varchar" name="view_thumb_image_1" nullable="false" length="255" comment="Front"/>
+        <column xsi:type="varchar" name="view_thumb_image_2" nullable="true" length="255" comment="Left"/>
+        <column xsi:type="varchar" name="view_thumb_image_3" nullable="true" length="255" comment="Back"/>
+        <column xsi:type="varchar" name="view_thumb_image_4" nullable="true" length="255" comment="Right"/>
+        
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Product ID"/>
+        
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="view_id"/>
+        </constraint>
+        
+        <constraint xsi:type="foreign" referenceId="PRO_CUST_VIEWS"
+                    table="product_custom_views" column="product_id" referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+    
+    
+    <table name="product_custom_otherinfo">
+        <column xsi:type="int" name="otherinfo_id" unsigned="true" identity="true" nullable="false" comment="Other Info id"/>
+        <column xsi:type="text" name="font" nullable="false" comment="Font"/>
+        <column xsi:type="int" name="font_size" unsigned="true" nullable="false" comment="Font size"/>
+        <column xsi:type="text" name="clipcat" nullable="true"  comment="Clipcat"/>
+        <column xsi:type="text" name="bclipcat" nullable="true" comment="Bclipcat"/>
+        <column xsi:type="text" name="sizecat" nullable="false" comment="Sizecat"/>
+        <column xsi:type="text" name="stylenumber" nullable="true"  comment="Style Number"/>
+        <column xsi:type="int" name="swatch_status" unsigned="true" nullable="false" comment="Swatch status"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Product ID"/>
+        
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="otherinfo_id"/>
+        </constraint>
+        
+        <constraint xsi:type="foreign" referenceId="PRO_CUST_OINFO"
+                    table="product_custom_otherinfo" column="product_id" referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+    
+    
+</schema>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Alex.
+* Glory to Ukraine! Glory to the heros!
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+      <!-- <add id="Codelegacy_Color::Fit" title="Shoes Data" module="Codelegacy_Color" sortOrder="20" resource="Codelegacy_Color::Fit"/> -->
+      <add id="Codelegacy_Color::color"  title="Colors" module="Codelegacy_Color" sortOrder="20" parent="Codelegacy_Design::Fit" resource="Codelegacy_Color::color"/>
+      <add id="Codelegacy_Color::colors"  title="Manage colors" module="Codelegacy_Color" sortOrder="20" action="codelegacy_color/index/index" parent="Codelegacy_Color::color" resource="Codelegacy_Color::colors"/>
+   </menu>
+
+</config>

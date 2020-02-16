@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Alex.
+* Glory to Ukraine! Glory to the heros!
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                        <resource id="Codelegacy_Orders::codelegacy_orders" title="Orders" sortOrder="30" />
+            </resource>
+        </resources>
+    </acl>
+</config>

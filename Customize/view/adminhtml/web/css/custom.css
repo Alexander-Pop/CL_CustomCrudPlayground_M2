@@ -1,0 +1,23 @@
+.viewImage {
+	position: relative;
+	float: left;
+	width: 150px;
+	left: 5%;
+	margin-top: -25%;
+}
+
+.viewThumbImage {
+	position: relative;
+	float: right;
+	width: 150px;
+	right: 10%;
+	margin-top: -25%;
+}
+
+.fildset_visibility {
+	display: block;
+}
+
+.col-ordered-qty .designSizeData tbody tr td{
+    padding:0 !important;
+}

@@ -1,0 +1,8 @@
+<!--@subject {{trans "Reply from Alex"}}  @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">{{trans "dear %name," name=$data.name}}</p>
+<p>{{trans "%reply" reply=$data.reply}}</p>
+<p>{{trans "Thank you for contacting us."}}</p>
+{{template config_path="design/email/footer_template"}}

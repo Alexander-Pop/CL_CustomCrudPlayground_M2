@@ -1,0 +1,232 @@
+<style type="text/css">
+    .responsive {
+        display: block;
+        border-top: 1px solid #e3e3e3;
+        width: 100%;
+        margin-top: 20px;
+        padding-left: 5%; 
+    }
+
+    .responsive tr th{
+        text-align: center;
+        min-width: 200px;
+    }
+
+    .tableHeading > td > h4{
+        text-align: center;
+        margin-top: 5%;
+    }
+
+    .colorPicker {
+        padding: 0;
+        margin: 0;
+        width: 200px;
+        height: 35px;
+    }
+
+    button.deleteColor {
+        float: right;
+        margin-left: 5px;
+    }
+</style>
+<?php
+$partArr = $block->getProductPartData();
+?>
+<input name="form_key" type="hidden" value="<?php /* @escapeNotVerified */ echo $block->getFormKey(); ?>" />
+
+<form method="post" action="" id="custom_colors_form" data-mage-init='{"form": {}, "validation": {}}' autocomplete="off">
+    <div class="entry-edit" id="custom_colors_section">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend">Tshirt color</h4>
+        </div>
+        <div class="fieldset fieldset-wide inside" id="group_fields4">
+            <?php if (sizeof($partArr) == 0) { ?>
+                <table class="responsive" width="100%" id="table_0" style="border: none">
+                    <thead>
+                        <tr>
+                            <th>
+                                Part Name
+                                <input type="text" data-form-part="product_form" name="customize_product[part][0][part_name]" id="part0" class="admin__control-text" data-validate="{required:true}">
+                            </th> 
+                            <th>
+                                <button id="label_0" type="button" class="addSizes">
+                                    <span>Add More Parts</span>
+                                </button>
+                            </th>
+                            <th>
+                                <button id="label_0" type="button" class="addColors">
+                                    <span>Add More Colors</span>
+                                </button>
+                            </th>
+                        </tr> 
+                    </thead>
+                    <tbody id="sizes_count_0">
+                        <tr class="tableHeading sizeHead" id="sizeR001">
+                            <td><h4>Color</h4></td>
+                            <td><h4>Name</h4></td>
+                            <td><h4>Price</h4></td>
+                            <td><h4>Code</h4></td>
+                        </tr>
+
+                        <tr class="sizeHead" id="sizeR0">
+                            <td>
+                                <input type="color" data-form-part="product_form"  name="customize_product[part][0][data][0][color_code]" id="colorpickerField0_0" class="admin__control-text colorPicker" data-validate="{required:true}">
+                                <input type="radio" data-form-part="product_form" name="customize_product[active]"  value="00">
+                            </td>
+                            <td>
+                                <input type="text" data-form-part="product_form" name="customize_product[part][0][data][0][color_title]" id="nameField0_0"  class="admin__control-text" data-validate="{required:true}">
+                            </td>
+                            <td>
+                                <input type="text" data-form-part="product_form" name="customize_product[part][0][data][0][price]" id="priceField0_0" class="admin__control-text" data-validate="{required:true}">
+                            </td>
+                            <td>
+                                <input type="text" data-form-part="product_form" name="customize_product[part][0][data][0][color]" id="colorField0_0" class="admin__control-text" data-validate="{required:true}">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <?php
+            } else {
+                $k = 0;
+                foreach ($partArr as $key => $value) {
+                    //echo 'value <pre>'.print_r($value);
+                    if ($k == 0) {
+                        $partDelete = '';
+                        $addMorePart = '<button id="label_0" type="button" class="addSizes"><span>Add More Parts</span></button>';
+                    } else {
+                        $partDelete = '<button style="cursor:pointer" type="button" class="deletePart" title="Delete"><span>Delete part</span></button>';
+                        $addMorePart = '';
+                    }
+                    ?>
+                    <table class="responsive" width="100%" id="table_<?php echo $k; ?>" style="display:block; <?php echo ($k > 0) ? "padding-top: 25px" : "border:none;"; ?>">
+                        <thead>
+                            <tr>
+                                <th>Part Name
+                                    <input type="text" data-form-part="product_form" name="customize_product[part][<?= $k ?>][part_name]" value="<?php echo $key; ?>" id="part<?php echo $k; ?>" class="admin__control-text" data-validate="{required:true}">
+                                </th>
+                                <th>
+                                    <button id="label_<?php echo $k; ?>" type="button" class="addColors" ><span>Add More Colors</span></button>
+                                </th>
+                                <th><?php echo $addMorePart . $partDelete; ?></th>
+                            </tr> 
+                        </thead>
+
+                        <tbody id="sizes_count">
+                            <tr class="tableHeading sizeHead" id="sizeR<?php echo $k; ?>">
+                                <td><h4>Color</h4></td>                           
+                                <td><h4>Name</h4></td>
+                                <td><h4>Price</h4></td>
+                                <td><h4>Code</h4></td>
+                            </tr>
+
+                            <?php
+                            //echo "<pre>";print_r($value);
+                            //echo $i.$value[$i]['color_code'];die;
+                            $count = count($value);
+                            for ($i = 0; $i < $count; $i++) {
+                                if ($i == "0") {
+                                    ?>
+                                    <tr class="sizeHead" id="sizeR<?php echo $k; ?>">                          
+                                        <td>
+                                            <input type="color" data-form-part="product_form" value="<?php echo $value[$i]['color_code']; ?>" name="customize_product[part][<?= $k ?>][data][<?= $i ?>][color_code]" id="colorpickerField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text colorPicker">
+
+                                            <input type="radio" data-form-part="product_form" name="customize_product[active]" value="<?php echo $k . $i; ?>" <?php if ($value[$i]['active'] == 1) { ?> checked='checked' <?php } ?>>
+                                        </td>
+
+                                        <td>
+                                            <input type="text" data-form-part="product_form"  value="<?php echo ($value[$i]['name'] != '') ? $value[$i]['name'] : ''; ?>" name="customize_product[part][<?= $k ?>][data][<?= $i ?>][color_title]" id="nameField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text teST2" data-validate="{required:true}">
+                                        </td>
+
+                                        <td>
+                                            <input type="text" data-form-part="product_form"  value="<?php echo $value[$i]['price']; ?>" name="customize_product[part][<?= $k ?>][data][<?= $i ?>][price]" id="priceField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text" data-validate="{required:true}">
+                                        </td>
+
+                                        <td>
+                                            <input type="text" data-form-part="product_form"  value="<?php echo $value[$i]['color']; ?>" name="customize_product[part][<?= $k ?>][data][<?= $i ?>][color]" id="colorField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text" data-validate="{required:true}">
+                                        </td>
+
+                                    </tr>
+                                <?php } else { ?>                                        
+                                    <tr class="sizeHead" id="sizeR<?php echo $k; ?>">
+                                        <td>
+
+                                            <input type="color" data-form-part="product_form" value="<?php echo $value[$i]['color_code']; ?>" name="customize_product[part][<?= $k ?>][data][<?= $i ?>][color_code]" id="colorpickerField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text colorPicker">
+
+                                            <input type="radio" data-form-part="product_form" name="customize_product[active]" value="<?php echo $k . $i; ?>" <?php if ($value[$i]['active'] == 1) { ?> checked='checked' <?php } ?>>
+                                        </td>
+                                        <td>
+                                            <input type="text"  data-form-part="product_form" value="<?php echo $value[$i]['name']; ?>" name="customize_product[part][<?= $k ?>][data][<?= $i ?>][color_title]" id="nameField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text" data-validate="{required:true}">
+                                        </td>
+                                        <td>
+                                            <input type="text" data-form-part="product_form" value="<?php echo $value[$i]['price']; ?>" name="customize_product[part][<?= $k ?>][data][<?= $i ?>][price]" id="priceField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text" data-validate="{required:true}">
+                                        </td>
+                                        <td>
+                                            <input type="text" data-form-part="product_form" value="<?php echo $value[$i]['color']; ?>" name="customize_product[part][<?= $k ?>][data][<?= $i ?>][color]" id="colorField<?php echo $k; ?>_<?php echo $i; ?>" class="admin__control-text" data-validate="{required:true}">
+                                        </td>
+                                        <td>
+                                            <input type="hidden" id="deleteField<?php echo $k; ?>_<?php echo $i; ?>">
+                                            <button type="button" data-form-part="product_form" title="Delete" class="deleteColor"><span>Delete</span></button>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            }
+
+                            $k++;
+                            ?>
+                        </tbody>
+                    </table> 
+                    <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+</form>
+<script>
+
+    require([
+        'jquery',
+        'mage/adminhtml/form',
+        'mage/mage',
+        'customJs'
+    ], function ($) {
+        'use strict';
+
+        var dataTable = $('#custom_colors_form');
+        dataTable.mage('validation', {});
+
+        jQuery('.addSizes').on('click', function () {
+            var colorPartHolder = jQuery("#custom_colors_section .inside");
+
+            var nextTableId = parseInt(jQuery("#custom_colors_section .inside table:last").attr("id").split("_")[1]) + 1;
+
+            var table = "";
+            table = '<table class="responsive" width ="100%" id ="table_' + nextTableId + '" style="display:block;padding-top:20px;"> <thead> <tr> <th>Part Name <input type="text" data-form-part="product_form" name="customize_product[part][' + nextTableId + '][part_name]" id="part' + nextTableId + '" class="admin__control-text" data-validate="{required:true}">  </th><th style="text-align:center;"><button id="label_part_' + nextTableId + '" type="button" class="addColors"><span>Add More Colors</span></button></th><th><button style="cursor:pointer;" title="Delete" type="button" class="deletePart">Delete part</button> </th> </tr> </thead><tbody id="sizes_count_' + nextTableId + '"> <tr class="tableHeading sizeHead" id="sizeR0_' + nextTableId + '"><td><h4>Color</h4></td><td style="padding-left:10px;"><h4>Name</h4></td><td style="padding-left:10px;"><h4>Price</h4></td></tr><tr class="sizeHead" id="sizeR0"><td><input type="color" data-form-part="product_form" name="customize_product[part][' + nextTableId + '][data][0][color_code]" id="colorpickerField' + nextTableId + '_1" class="admin__control-text colorPicker" required> <input type="radio" data-form-part="product_form" name="customize_product[active]"  value="0' + nextTableId + '"></td> <td><input type="text" data-form-part="product_form" name="customize_product[part][' + nextTableId + '][data][0][color_title]" id="nameField' + nextTableId + '" class="admin__control-text" data-validate="{required:true}"></td> <td><input type="text" data-form-part="product_form" name="customize_product[part][' + nextTableId + '][data][0][price]" id="priceField' + nextTableId + '_1" class="admin__control-text" data-validate="{required:true}"></td></tr> </tbody> </table>';
+
+            jQuery(colorPartHolder).append(table);
+        });
+
+        jQuery.noConflict();
+
+
+        jQuery('body').on('click', '.addColors', function () {
+            var nextColId = parseInt(jQuery(this).parent().parent().parent().parent().find("tbody tr:last td:last input").attr("id").split("_")[1]) + 1;
+            console.log("nextColId = " + nextColId)
+            var nextTableId = parseInt(jQuery(this).parent().parent().parent().parent().attr("id").split("_")[1]);
+            var tableColor = '<tr><td><input type="color" data-form-part="product_form" name="customize_product[part][' + nextTableId + '][data][' + nextColId + '][color_code]" id="colorpickerField' + nextTableId + '_' + nextColId + '" class="admin__control-text colorPicker" > <input type="radio" data-form-part="product_form" name="customize_product[active]" value="' + nextTableId + nextColId + '" ></td><td><input type="text" data-form-part="product_form" name="customize_product[part][' + nextTableId + '][data][' + nextColId + '][color_title]" id="nameField' + nextTableId + '_' + nextColId + '" class="admin__control-text" data-validate="{required:true}"></td><td><input type="text" data-form-part="product_form" name="customize_product[part][' + nextTableId + '][data][' + nextColId + '][price]" id="priceField' + nextTableId + '_' + nextColId + '" class="admin__control-text" data-validate="{required:true}"></td><td><input type="text" data-form-part="product_form" name="customize_product[part][' + nextTableId + '][data][' + nextColId + '][color]" id="colorField' + nextTableId + '_' + nextColId + '" class="admin__control-text" data-validate="{required:true}"></td><td><input type="hidden" id="deleteField' + nextTableId + '_' + nextColId + '"><button type="button" title="Delete" class="deleteColor"><span>Delete</span></button></td></tr>';
+
+            jQuery(this).parent().parent().parent().parent().find("tbody").append(tableColor);
+        });
+
+        jQuery('body').on('click', '.deleteColor', function () {
+            jQuery(this).parent().parent().remove();
+        });
+
+        jQuery('body').on('click', '.deletePart', function () {
+            jQuery(this).parent().parent().parent().parent().remove();
+        })
+
+
+    });
+</script>

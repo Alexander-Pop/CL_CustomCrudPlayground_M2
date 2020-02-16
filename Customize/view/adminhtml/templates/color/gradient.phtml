@@ -1,0 +1,235 @@
+<style>
+    .sp-palette {
+        max-width: 200px;
+    }
+
+    .label {
+        background: #444;
+        padding:8px;    
+        border-radius: 4px;
+        color: #eee;
+        margin-top: 10px;
+        display:inline-block;
+    }
+
+    .sp-preview, .sp-alpha, .sp-thumb-el {
+        top: 1px;
+    }
+
+    .sp-preview {
+        border: 1px solid #adadad;
+        border-radius: 1px;
+        width: 29px;
+        height: 29px;
+        background: white;
+    }
+
+    .sp-replacer {
+        padding: 0px; 
+        border: none; 
+        background: none;
+    }
+
+    .sp-picker-container, .sp-palette-container {
+        margin: 0px;
+        padding-bottom: 10px;
+        padding-top: 0px;
+    }
+
+    .sp-container {
+        left: 35px;
+    }
+
+    .admin__control-select, .ui-datepicker .ui-datepicker-title select {
+        caret-color : white;
+    }
+
+    .admin__fieldset-wrapper-content .admin__fieldset {
+        padding-top: 0px;
+    }
+
+    .removeColor:after{
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 2rem;
+        line-height: inherit;
+        color: #514943;
+        content: '\e630';
+        font-family: 'Admin Icons';
+        vertical-align: middle;
+        display: inline-block;
+        font-weight: normal;
+        overflow: hidden;
+        speak: none;
+        text-align: right;
+        top: -3px;
+        position: relative;
+    }
+
+</style>
+    
+    <div class="row admin__fieldset">
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span>Color Gradient</span>
+            </label>
+
+            <div class="admin__field-control">
+                <div class="sp-replacer sp-light" style="display:show;">
+                    <div class="sp-preview">
+                        <div class="sp-preview-inner"></div>
+                    </div>
+                    <input class="admin__control-select" data-form-part="brand_index_form" type="text" onclick="event.preventDefault()" name="color_gradient" id="color_gradient" onkeydown="event.preventDefault();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <span class="removeColor" style="display:inline-block"> </span>
+                </div>
+                <br>
+                <div class="sp-container sp-light sp-input-disabled sp-palette-buttons-disabled sp-palette-only sp-initial-disabled" style="position: relative; display:none;" id="hideThis">
+                    <div class="sp-palette-container">
+                        <div class="sp-palette sp-thumb sp-cf">
+                            <div class="sp-cf sp-palette-row sp-palette-row-0">
+                                <span title="#7B0DDC" class="sp-thumb-el sp-thumb-dark" id="7B0DDC">
+                                    <span class="sp-thumb-inner" style="background-color:#7B0DDC;"></span>
+                                </span>
+                                <span title="#09203f" class="sp-thumb-el sp-thumb-dark" id="09203f">
+                                    <span class="sp-thumb-inner" style="background-color:#09203f;"></span>
+                                </span>
+                                <span title="#F5519A" class="sp-thumb-el sp-thumb-dark" id="F5519A">
+                                    <span class="sp-thumb-inner" style="background-color:#F5519A;"></span>
+                                </span>
+                                <span title="#2C8AC0" class="sp-thumb-el sp-thumb-light" id="2C8AC0">
+                                    <span class="sp-thumb-inner" style="background-color:#2C8AC0;"></span>
+                                </span>
+                                <span title="#A7A6CB" class="sp-thumb-el sp-thumb-dark" id="A7A6CB">
+                                    <span class="sp-thumb-inner" style="background-color:#A7A6CB;"></span>
+                                </span>
+                                <span title="#486B77" class="sp-thumb-el sp-thumb-light" id="486B77">
+                                    <span class="sp-thumb-inner" style="background-color:#486B77;"></span>
+                                </span>
+                                <span title="#5C8998" class="sp-thumb-el sp-thumb-dark" id="5C8998">
+                                    <span class="sp-thumb-inner" style="background-color:#5C8998;"></span>
+                                </span>
+                                <span title="#5A5A6F" class="sp-thumb-el sp-thumb-dark" id="5A5A6F">
+                                    <span class="sp-thumb-inner" style="background-color:#5A5A6F;"></span>
+                                </span>
+                                <span title="#567681" class="sp-thumb-el sp-thumb-dark" id="567681">
+                                    <span class="sp-thumb-inner" style="background-color:#567681;"></span>
+                                </span>
+                            </div>
+                            <div class="sp-cf sp-palette-row sp-palette-row-1">
+                                <span title="#2E78A2" class="sp-thumb-el sp-thumb-dark" id="2E78A2">
+                                    <span class="sp-thumb-inner" style="background-color:#2E78A2;"></span>
+                                </span>
+                                <span title="#3B3A4D" class="sp-thumb-el sp-thumb-dark" id="3B3A4D">
+                                    <span class="sp-thumb-inner" style="background-color:#3B3A4D;"></span>
+                                </span>
+                                <span title="#785CB4" class="sp-thumb-el sp-thumb-dark" id="785CB4">
+                                    <span class="sp-thumb-inner" style="background-color:#785CB4;"></span>
+                                </span>
+                                <span title="#2A5771" class="sp-thumb-el sp-thumb-dark" id="2A5771">
+                                    <span class="sp-thumb-inner" style="background-color:#2A5771;"></span>
+                                </span>
+                                <span title="#66666B" class="sp-thumb-el sp-thumb-dark" id="66666B">
+                                    <span class="sp-thumb-inner" style="background-color:#66666B;"></span>
+                                </span>
+                                <span title="#CF1B5E" class="sp-thumb-el sp-thumb-light" id="CF1B5E">
+                                    <span class="sp-thumb-inner" style="background-color:#CF1B5E;"></span>
+                                </span>
+                                <span title="#1DC9ED" class="sp-thumb-el sp-thumb-dark" id="1DC9ED">
+                                    <span class="sp-thumb-inner" style="background-color:#1DC9ED;"></span>
+                                </span>
+                                <span title="#F42F72" class="sp-thumb-el sp-thumb-dark" id="F42F72">
+                                    <span class="sp-thumb-inner" style="background-color:#F42F72;"></span>
+                                </span>
+                                <span title="#B79891" class="sp-thumb-el sp-thumb-dark" id="B79891">
+                                    <span class="sp-thumb-inner" style="background-color:#B79891;"></span>
+                                </span>
+                            </div>
+                            <div class="sp-cf sp-palette-row sp-palette-row-2">
+                                <span title="#536976" class="sp-thumb-el sp-thumb-light" id="536976">
+                                    <span class="sp-thumb-inner" style="background-color:#536976;"></span>
+                                </span>
+                                <span title="#00416A" class="sp-thumb-el sp-thumb-light" id="00416A">
+                                    <span class="sp-thumb-inner" style="background-color:#00416A;"></span>
+                                </span>
+                                <span title="#FFE259" class="sp-thumb-el sp-thumb-dark" id="FFE259">
+                                    <span class="sp-thumb-inner" style="background-color:#FFE259;"></span>
+                                </span>
+                                <span title="#5433FF" class="sp-thumb-el sp-thumb-dark" id="5433FF">
+                                    <span class="sp-thumb-inner" style="background-color:#5433FF;"></span>
+                                </span>
+                                <span title="#0F2027" class="sp-thumb-el sp-thumb-dark" id="0F2027">
+                                    <span class="sp-thumb-inner" style="background-color:#0F2027;"></span>
+                                </span>
+                                <span title="#2980B9" class="sp-thumb-el sp-thumb-dark" id="2980B9">
+                                    <span class="sp-thumb-inner" style="background-color:#2980B9;"></span>
+                                </span>
+                                <span title="#373B44" class="sp-thumb-el sp-thumb-light" id="373B44">
+                                    <span class="sp-thumb-inner" style="background-color:#373B44;"></span>
+                                </span>
+                                <span title="#8E2DE2" class="sp-thumb-el sp-thumb-dark" id="8E2DE2">
+                                    <span class="sp-thumb-inner" style="background-color:#8E2DE2;"></span>
+                                </span>
+                                <span title="#654EA3" class="sp-thumb-el sp-thumb-dark" id="654EA3">
+                                    <span class="sp-thumb-inner" style="background-color:#654EA3;"></span>
+                                </span>
+                            </div>
+                            <div class="sp-cf sp-palette-row sp-palette-row-3">
+                                <span title="#FFFBD5" class="sp-thumb-el sp-thumb-dark" id="FFFBD5">
+                                    <span class="sp-thumb-inner" style="background-color:#FFFBD5;"></span>
+                                </span>
+                                <span title="#0F0C29" class="sp-thumb-el sp-thumb-light" id="0F0C29">
+                                    <span class="sp-thumb-inner" style="background-color:#0F0C29;"></span>
+                                </span>
+                            </div>
+                            <!-- <br /> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+require([
+    "jquery"
+], function($, confirm){
+    $(document).ready(function (){
+        var color = "<?php echo $block->getColorGradient();?>";
+         if(color != "") {
+             $('[name="color_gradient"]').val(color);
+             $('.sp-preview-inner').css('background-color', '#'+color);
+         } else {
+             $('.removeColor').hide();
+         }
+        
+        $('.removeColor').click(function() {
+            $('[name="color_gradient"]').val("");
+            $('.sp-preview-inner').css('background-color', 'white');
+            $(this).hide();
+        });
+
+        // hide the color picker on side click
+        $(document).click(function(e) {
+            var className = $(e.srcElement).attr('class');
+            if(className != 'admin__control-select' && className != 'sp-thumb-inner' && className != 'sp-palette-container' && className != 'sp-cf sp-palette-row' && className != 'sp-thumb-el sp-thumb-dark' && className != 'sp-palette sp-thumb sp-cf') {
+                if($('.sp-container').length > 0) {
+                    $('.sp-container').fadeOut(750);
+                }
+            }
+        });
+
+        $('.admin__control-select').click(function(){
+            $('.sp-container').fadeIn(750);
+        });
+
+        $('.sp-palette').children().children().click(function() {
+            $('.sp-preview-inner').css('background-color', '#'+$(this).attr('id'));
+            $('[name="color_gradient"]').val($(this).attr('id'));
+            
+            $('.removeColor').show();
+            
+        });
+    });
+});
+
+</script>

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Email/etc/email_templates.xsd">
+ <template id="customer_place_order" label="Place Order" file="place_order.html" type="html" module="Codelegacy_Orders" area="frontend"/>
+ <template id="admin_order_email" label="Place Order" file="admin_order.html" type="html" module="Codelegacy_Orders" area="frontend"/>
+</config>

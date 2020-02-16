@@ -1,0 +1,151 @@
+<!-- header section -->
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager  = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseUrl       = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+$FormKey       = $objectManager->create('Magento\Framework\Data\Form\FormKey');
+$_request      = $objectManager->get('Magento\Framework\App\Request\Http');
+$order_id      = $_request->getParam('codelegacy_orders_id');
+$modelOrder    = $objectManager->create('Codelegacy\Orders\Model\Orders')->getCollection()->addFieldToFilter('codelegacy_orders_id',['eq'=>$order_id]);
+// echo "<pre>"; print_r($modelOrder->getData());
+?>
+
+<!-- header section ends -->
+<div class="fieldset-wrapper customer-information">
+    <div class="fieldset-wrapper-title">
+        <span class="title">Order Information</span>
+    </div>
+
+    <?php foreach ($modelOrder as $key => $value): ?>
+
+      <?php
+      $productId = $value->getProductId();
+      $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+      $productName = $product->getName();
+      // $product->getPrice();
+       ?>
+      <h4>Product : <?php echo $productName; ?></h4> <hr>
+      <h5>Customer Email : <?php echo $value->getCustomerEmail(); ?></h5> <hr>
+
+      <?php
+      $getCustomData = json_decode($value->getCustomDesign(),true);
+      $viewsData = $getCustomData['viewsData'];
+      // echo "<pre>"; print_r($viewsData);
+      // echo $viewsData['view1'];
+      $clipsData = array_filter($getCustomData['clipsData']);
+
+      $attributes = $getCustomData['attributes'];
+
+      $textData = $getCustomData['textData'];
+      // echo "<pre>"; print_r($attributes);
+      ?>
+      <table class="admin__table-secondary">
+        <tbody>
+          <tr>
+            <td> <img height="200" width="300" src="<?php echo $viewsData['view1']; ?>" alt=""></td>
+              <td> <img height="200" width="300" src="<?php echo $viewsData['view2']; ?>" alt=""></td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <?php if(!empty($attributes)): ?>
+        <table class="admin__table-secondary">
+          <thead>
+            <tr>
+              <td>Shoes Part</td>
+              <td>Color</td>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach($attributes as $key => $value): ?>
+            <tr>
+              <td><?php echo $key; ?></td>
+              <td>
+                <img height="50" width="70" src="<?php echo $value; ?>" alt="">
+              </td>
+            </tr>
+          <?php endforeach; ?>
+          </tbody>
+        </table>
+      <?php endif; ?>
+
+      <?php if(!empty($clipsData)): ?>
+        <hr>
+        <h4>ClipArts</h4><br>
+        <table class="admin__table-secondary">
+          <tbody>
+            <?php foreach($clipsData as $key => $value): ?>
+            <tr>
+              <td><?php echo $key; ?></td>
+              <td> <img height="70" width="70" src="<?php echo $value; ?>" alt=""> </td>
+            </tr>
+          <?php endforeach; ?>
+          </tbody>
+        </table>
+      <?php endif; ?>
+
+      <?php if(!empty($textData)): ?>
+        <hr>
+        <h4>Texts</h4><br>
+        <table class="admin__table-secondary">
+          <!-- <thead>
+            <tr>
+              <td>Attribute</td>
+              <td>Value</td>
+            </tr> -->
+          </thead>
+          <tbody>
+            <?php foreach($textData as $key => $value): ?>
+            <tr>
+              <td>
+                <?php echo $key;
+              if($key == "left_text_color"){ ?>
+              <div style="background-color:<?php echo $value; ?>; height:10px; width:100px;"></div>
+              <?php } ?>
+              <?php if($key == "right_text_color"){ ?>
+              <div style="background-color:<?php echo $value; ?>; height:10px; width:100px;"></div>
+              <?php } ?>
+              </td>
+              <td><?php echo $value; ?></td>
+            </tr>
+          <?php endforeach; ?>
+          </tbody>
+        </table>
+      <?php endif; ?>
+
+    <?php endforeach; ?>
+
+    <!-- <table class="admin__table-secondary">
+        <tbody>
+                <tr>
+            <th>Last Logged In:</th>
+            <td>Nov 12, 2019, 5:17:23 AM (Offline)</td>
+        </tr>
+                <tr>
+            <th>Account Lock:</th>
+            <td>Unlocked</td>
+        </tr>
+        <tr>
+            <th>Confirmed email:</th>
+            <td>Confirmation Not Required</td>
+        </tr>
+        <tr>
+            <th>Account Created:</th>
+            <td>Oct 9, 2019, 5:29:04 AM</td>
+        </tr>
+         <tr>
+            <th>Account Created in:</th>
+            <td>Default Store View</td>
+        </tr>
+        <tr>
+            <th>Customer Group:</th>
+            <td>General</td>
+        </tr>
+        </tbody>
+    </table> -->
+    <!-- <address>
+        <strong>Default Billing Address</strong><br>
+        The customer does not have default billing address.
+    </address> -->
+
+</div>

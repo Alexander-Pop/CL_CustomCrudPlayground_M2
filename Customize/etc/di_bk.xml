@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Ui\DataProvider\Product\Form\ProductDataProvider" type="Codelegacy\Customize\Model\ProductDataProvider"/>
+
+    <type name="Codelegacy\Customize\Model\ImageUploader">
+        <arguments>
+            <!-- Temporary file stored in pub/media/faq/tmp/icon -->
+            <argument name="baseTmpPath" xsi:type="string">custom_images/tmp/icon</argument>
+            <argument name="basePath" xsi:type="string">custom_images/icon</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Alex.
+* Glory to Ukraine! Glory to the heros!
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+      <!-- <add id="Codelegacy_Contacts::Fit" title="Shoes Data" module="Codelegacy_Contacts" sortOrder="20" resource="Codelegacy_Contacts::Fit"/> -->
+      <add id="Codelegacy_Contacts::contacts"  title="Contacts" module="Codelegacy_Contacts" sortOrder="20" resource="Codelegacy_Contacts::contacts"/>
+      <add id="Codelegacy_Contacts::contactss"  title="Manage contacts" module="Codelegacy_Contacts" sortOrder="20" action="codelegacy_contacts/index/index" parent="Codelegacy_Contacts::contacts" resource="Codelegacy_Contacts::contactss"/>
+   </menu>
+
+</config>

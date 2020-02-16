@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <fieldset name="customize_product">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Customize Product</item>
+                <item name="provider" xsi:type="string">product</item>
+                <item name="sortOrder" xsi:type="number">1</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="ns" xsi:type="string">product_form</item>
+            </item>
+        </argument>
+        <settings>
+            <additionalClasses>
+                <class name="fildset_visibility">true</class>
+            </additionalClasses>
+        </settings>
+
+        <fieldset name="product_views">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Product Views</item>
+                    <item name="dataScope" xsi:type="string">data.customize_images</item>
+                    <item name="provider" xsi:type="string">product</item>
+                    <item name="sortOrder" xsi:type="number">1</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="opened" xsi:type="boolean">false</item>
+                    <item name="ns" xsi:type="string">product_form</item>
+                    <item name="breakLine" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+
+            <!-- front view fieldset -->
+            <fieldset name="left_views_fieldset">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Left</item>
+                        <item name="sortOrder" xsi:type="number">1</item>
+                        <item name="collapsible" xsi:type="boolean">true</item>
+                        <item name="opened" xsi:type="boolean">true</item>
+                    </item>
+                </argument>
+
+                <container name="front_view_container" component="Magento_Ui/js/form/components/group">
+                    <argument name="data" xsi:type="array">
+                        <item name="type" xsi:type="string">group</item>
+                        <item name="config" xsi:type="array">
+                            <item name="required" xsi:type="boolean">false</item>
+                            <item name="breakLine" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <field name="view_image_1" sortOrder="3" formElement="imageUploader">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="source" xsi:type="string">category</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                            <dataType>string</dataType>
+                            <label translate="true">Left View</label>
+                            <visible>true</visible>
+                            <required>false</required>
+                        </settings>
+                        <formElements>
+                            <imageUploader>
+                                <settings>
+                                    <required>false</required>
+                                    <uploaderConfig>
+                                        <param xsi:type="url" name="url" path="customize/customproduct_image/upload"/>
+                                    </uploaderConfig>
+                                    <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                                    <openDialogTitle>Media Gallery</openDialogTitle>
+                                    <initialMediaGalleryOpenSubpath>catalog/category</initialMediaGalleryOpenSubpath>
+                                    <allowedExtensions>svg jpg jpeg gif png</allowedExtensions>
+                                    <maxFileSize>9194304</maxFileSize>
+                                </settings>
+                            </imageUploader>
+                        </formElements>
+                    </field>
+
+
+                    <field name="view_thumb_image_1" sortOrder="40" formElement="imageUploader">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="source" xsi:type="string">category</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                            <dataType>string</dataType>
+                            <label translate="true">Left View Thumb</label>
+                            <visible>true</visible>
+                            <required>false</required>
+                        </settings>
+                        <formElements>
+                            <imageUploader>
+                                <settings>
+                                    <required>false</required>
+                                    <uploaderConfig>
+                                        <param xsi:type="url" name="url" path="customize/customproduct_image/upload"/>
+                                    </uploaderConfig>
+                                    <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                                    <openDialogTitle>Media Gallery</openDialogTitle>
+                                    <initialMediaGalleryOpenSubpath>catalog/category</initialMediaGalleryOpenSubpath>
+                                    <allowedExtensions>svg jpg jpeg gif png</allowedExtensions>
+                                    <maxFileSize>9194304</maxFileSize>
+                                </settings>
+                            </imageUploader>
+                        </formElements>
+                    </field>
+                </container>
+                <htmlContent name="front_views_image">
+                    <argument name="block" xsi:type="object">Codelegacy\Customize\Block\Adminhtml\Product\Images\FrontView</argument>
+                </htmlContent>
+                <!-- <htmlContent name="front_view_thumb_image">
+                    <argument name="block" xsi:type="object">Codelegacy\Customize\Block\Adminhtml\Product\Images\FrontViewThumb</argument>
+                </htmlContent> -->
+            </fieldset>
+
+
+            <!-- right view fieldset -->
+            <fieldset name="right_views_fieldset">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Right</item>
+                        <item name="sortOrder" xsi:type="number">2</item>
+                        <item name="collapsible" xsi:type="boolean">true</item>
+                        <item name="opened" xsi:type="boolean">true</item>
+                    </item>
+                </argument>
+                <container name="back_view_container" component="Magento_Ui/js/form/components/group">
+                    <argument name="data" xsi:type="array">
+                        <item name="type" xsi:type="string">group</item>
+                        <item name="config" xsi:type="array">
+                            <item name="required" xsi:type="boolean">false</item>
+                            <item name="breakLine" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <field name="view_image_2" sortOrder="3" formElement="imageUploader">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="source" xsi:type="string">category</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                            <dataType>string</dataType>
+                            <label translate="true">Right View</label>
+                            <visible>true</visible>
+                            <required>false</required>
+                        </settings>
+                        <formElements>
+                            <imageUploader>
+                                <settings>
+                                    <required>false</required>
+                                    <uploaderConfig>
+                                        <param xsi:type="url" name="url" path="customize/customproduct_image/upload"/>
+                                    </uploaderConfig>
+                                    <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                                    <openDialogTitle>Media Gallery</openDialogTitle>
+                                    <initialMediaGalleryOpenSubpath>catalog/category</initialMediaGalleryOpenSubpath>
+                                    <allowedExtensions>svg jpg jpeg gif png</allowedExtensions>
+                                    <maxFileSize>9194304</maxFileSize>
+                                </settings>
+                            </imageUploader>
+                        </formElements>
+                    </field>
+
+                    <field name="view_thumb_image_2" sortOrder="40" formElement="imageUploader">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="source" xsi:type="string">category</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                            <dataType>string</dataType>
+                            <label translate="true">Right View Thumb</label>
+                            <visible>true</visible>
+                            <required>false</required>
+                        </settings>
+                        <formElements>
+                            <imageUploader>
+                                <settings>
+                                    <required>false</required>
+                                    <uploaderConfig>
+                                        <param xsi:type="url" name="url" path="customize/customproduct_image/upload"/>
+                                    </uploaderConfig>
+                                    <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                                    <openDialogTitle>Media Gallery</openDialogTitle>
+                                    <initialMediaGalleryOpenSubpath>catalog/category</initialMediaGalleryOpenSubpath>
+                                    <allowedExtensions>svg jpg jpeg gif png</allowedExtensions>
+                                    <maxFileSize>9194304</maxFileSize>
+                                </settings>
+                            </imageUploader>
+                        </formElements>
+                    </field>
+                </container>
+                <htmlContent name="back_views_image">
+                    <argument name="block" xsi:type="object">Codelegacy\Customize\Block\Adminhtml\Product\Images\BackView</argument>
+                </htmlContent>
+            </fieldset>
+
+            <!-- back view fieldset -->
+            <fieldset name="back_views_fieldset">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Back</item>
+                        <item name="sortOrder" xsi:type="number">3</item>
+                        <item name="collapsible" xsi:type="boolean">true</item>
+                        <item name="opened" xsi:type="boolean">true</item>
+                    </item>
+                </argument>
+                <container name="back_view_container" component="Magento_Ui/js/form/components/group">
+                    <argument name="data" xsi:type="array">
+                        <item name="type" xsi:type="string">group</item>
+                        <item name="config" xsi:type="array">
+                            <item name="required" xsi:type="boolean">false</item>
+                            <item name="breakLine" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <field name="view_image_3" sortOrder="3" formElement="imageUploader">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="source" xsi:type="string">category</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                            <dataType>string</dataType>
+                            <label translate="true">Back View</label>
+                            <visible>true</visible>
+                            <required>false</required>
+                        </settings>
+                        <formElements>
+                            <imageUploader>
+                                <settings>
+                                    <required>false</required>
+                                    <uploaderConfig>
+                                        <param xsi:type="url" name="url" path="customize/customproduct_image/upload"/>
+                                    </uploaderConfig>
+                                    <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                                    <openDialogTitle>Media Gallery</openDialogTitle>
+                                    <initialMediaGalleryOpenSubpath>catalog/category</initialMediaGalleryOpenSubpath>
+                                    <allowedExtensions>svg jpg jpeg gif png</allowedExtensions>
+                                    <maxFileSize>9194304</maxFileSize>
+                                </settings>
+                            </imageUploader>
+                        </formElements>
+                    </field>
+
+                    <field name="view_thumb_image_3" sortOrder="40" formElement="imageUploader">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="source" xsi:type="string">category</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                            <dataType>string</dataType>
+                            <label translate="true">Back View Thumb</label>
+                            <visible>true</visible>
+                            <required>false</required>
+                        </settings>
+                        <formElements>
+                            <imageUploader>
+                                <settings>
+                                    <required>false</required>
+                                    <uploaderConfig>
+                                        <param xsi:type="url" name="url" path="customize/customproduct_image/upload"/>
+                                    </uploaderConfig>
+                                    <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                                    <openDialogTitle>Media Gallery</openDialogTitle>
+                                    <initialMediaGalleryOpenSubpath>catalog/category</initialMediaGalleryOpenSubpath>
+                                    <allowedExtensions>svg jpg jpeg gif png</allowedExtensions>
+                                    <maxFileSize>9194304</maxFileSize>
+                                </settings>
+                            </imageUploader>
+                        </formElements>
+                    </field>
+                </container>
+                <htmlContent name="back_views_image">
+                    <argument name="block" xsi:type="object">Codelegacy\Customize\Block\Adminhtml\Product\Images\BackView</argument>
+                </htmlContent>
+            </fieldset>
+
+
+
+        </fieldset>
+
+        <!-- <fieldset name="tshirt_color">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Tshirt color</item>
+                    <item name="provider" xsi:type="string">product</item>
+                    <item name="sortOrder" xsi:type="number">2</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="opened" xsi:type="boolean">false</item>
+                    <item name="ns" xsi:type="string">product_form</item>
+                    <item name="breakLine" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <container name="color_container">
+                <htmlContent name="color_htmlcontent">
+                    <argument name="block" xsi:type="object">Codelegacy\Customize\Block\Adminhtml\Product\Colors</argument>
+                </htmlContent>
+            </container>
+        </fieldset> -->
+
+        <!-- <fieldset name="text_limit">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Text Limit</item>
+                    <item name="provider" xsi:type="string">product</item>
+                    <item name="sortOrder" xsi:type="number">3</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="opened" xsi:type="boolean">false</item>
+                    <item name="ns" xsi:type="string">product_form</item>
+                    <item name="breakLine" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <container name="text_limit_container">
+                <htmlContent name="text_limit_htmlcontent">
+                    <argument name="block" xsi:type="object">Codelegacy\Customize\Block\Adminhtml\Product\TextLimit</argument>
+                </htmlContent>
+            </container>
+        </fieldset> -->
+
+        <fieldset name="fonts">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Other Information</item>
+                    <item name="provider" xsi:type="string">product</item>
+                    <item name="dataScope" xsi:type="string">data.otherInfo</item>
+                    <item name="sortOrder" xsi:type="number">4</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="opened" xsi:type="boolean">false</item>
+                    <item name="ns" xsi:type="string">product_form</item>
+                    <item name="breakLine" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+
+
+            <field name="stylenumber" sortOrder="3" formElement="multiselect">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Style Number</label>
+                </settings>
+                <formElements>
+                    <multiselect>
+                        <settings>
+                            <options class="Codelegacy\Customize\Model\Config\Source\CustomizeProduct\StyleNumber"/>
+                            <caption translate="true">--Select--</caption>
+                        </settings>
+                    </multiselect>
+                </formElements>
+            </field>
+
+
+
+            <field name="font" sortOrder="1" formElement="select">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Font Name</label>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Codelegacy\Customize\Model\Config\Source\CustomizeProduct\Font"/>
+                            <caption translate="true">--Select--</caption>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+
+            <field name="font_size" sortOrder="2" formElement="select">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Font Size</label>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Codelegacy\Customize\Model\Config\Source\CustomizeProduct\FontSize"/>
+                            <caption translate="true">--Select--</caption>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+
+
+            <field name="clipcat" sortOrder="3" formElement="multiselect">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Front View Graphic Category</label>
+                </settings>
+                <formElements>
+                    <multiselect>
+                        <settings>
+                            <options class="Codelegacy\Customize\Model\Config\Source\CustomizeProduct\GraphicCategoryFront"/>
+                            <caption translate="true">--Select--</caption>
+                        </settings>
+                    </multiselect>
+                </formElements>
+            </field>
+
+            <field name="bclipcat" sortOrder="4" formElement="multiselect">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Back View Graphic Category</label>
+                </settings>
+                <formElements>
+                    <multiselect>
+                        <settings>
+                            <options class="Codelegacy\Customize\Model\Config\Source\CustomizeProduct\GraphicCategoryBack"/>
+                            <caption translate="true">--Select--</caption>
+                        </settings>
+                    </multiselect>
+                </formElements>
+            </field>
+
+            <field name="sizecat" sortOrder="5" formElement="multiselect">
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Size Category</label>
+                </settings>
+                <formElements>
+                    <multiselect>
+                        <settings>
+                            <options class="Codelegacy\Customize\Model\Config\Source\CustomizeProduct\SizeCategory"/>
+                            <caption translate="true">--Select--</caption>
+                        </settings>
+                    </multiselect>
+                </formElements>
+            </field>
+
+            <field name="swatch_status" sortOrder="7" formElement="checkbox">
+                <settings>
+                    <dataType>boolean</dataType>
+                    <label translate="true">Use color category swatch</label>
+                </settings>
+                <formElements>
+                    <checkbox>
+                        <settings>
+                            <valueMap>
+                                <map name="false" xsi:type="number">0</map>
+                                <map name="true" xsi:type="number">1</map>
+                            </valueMap>
+                            <prefer>toggle</prefer>
+                        </settings>
+                    </checkbox>
+                </formElements>
+            </field>
+        </fieldset>
+    </fieldset>
+</form>
